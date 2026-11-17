@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activity 3: A Letter to My Future Self</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600&family=Caveat:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #23304a;
+      --paper: #fffdfb;
+      --line: #d6dcee;
+      --head: "Fredoka", "Trebuchet MS", sans-serif;
+      --body: "Nunito", "Segoe UI", sans-serif;
+      --hand: "Caveat", "Segoe Print", cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.6;
+      padding: 0 18px 72px;
+      background: radial-gradient(900px 520px at 6% -5%, #ffd6e4 0, transparent 62%), radial-gradient(800px 520px at 100% 0, #cfe2ff 0, transparent 62%), radial-gradient(900px 600px at 50% 110%, #d3f2e4 0, transparent 62%), #f7f5ff;
+      background-attachment: fixed
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(35, 48, 74, .13) 1.2px, transparent 1.4px);
+      background-size: 26px 26px
+    }
+
+    header {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 68px 0 44px;
+      position: relative
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      font: 500 .92rem var(--head);
+      padding: 6px 18px;
+      border-radius: 99px;
+      margin-bottom: 18px
+    }
+
+    header h1 {
+      font-family: var(--head);
+      font-weight: 600;
+      font-size: clamp(2.6rem, 7vw, 4.7rem);
+      line-height: 1.04;
+      letter-spacing: -.01em
+    }
+
+    .squig {
+      display: block;
+      width: min(280px, 60%);
+      margin: 8px 0 0
+    }
+
+    .squig path {
+      stroke-dasharray: 420;
+      animation: drawonce 1.6s .3s ease-out both
+    }
+
+    header p {
+      max-width: 54ch;
+      margin-top: 18px;
+      font-size: 1.1rem
+    }
+
+    .q-float {
+      position: absolute;
+      right: 3%;
+      top: 48px;
+      display: flex;
+      gap: 12px
+    }
+
+    .q-float span {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      display: grid;
+      place-items: center;
+      font: 600 1.4rem var(--head);
+      animation: float 3s ease-in-out infinite
+    }
+
+    .q-float span:nth-child(2) {
+      animation-delay: .5s;
+      background: #f2b84b
+    }
+
+    .q-float span:nth-child(3) {
+      animation-delay: 1s;
+      background: #9fd8c3
+    }
+
+    @media(max-width:620px) {
+      .q-float {
+        display: none
+      }
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 38px 32px
+    }
+
+    @media(min-width:900px) {
+      main {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .card {
+      position: relative;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 var(--c);
+      transition: transform .25s ease, box-shadow .25s ease
+    }
+
+    .card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 11px 11px 0 var(--c)
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      aspect-ratio: 320/180;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .4), transparent 45%, rgba(35, 48, 74, .14))
+    }
+
+    .scene {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-bottom: 3px solid var(--ink);
+      cursor: pointer
+    }
+
+    .body {
+      padding: 24px 26px 28px
+    }
+
+    .body h2 {
+      font-family: var(--head);
+      font-weight: 500;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start
+    }
+
+    .no {
+      flex: none;
+      width: 36px;
+      height: 36px;
+      margin: 3px 0 0 3px;
+      border-radius: 50%;
+      background: var(--c);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font: 600 1.05rem var(--head);
+      box-shadow: 0 0 0 3px #fff, 0 0 0 5.5px var(--c)
+    }
+
+    .answer {
+      margin-top: 20px;
+      min-height: 180px;
+      padding: 4px 18px 4px 54px;
+      border-radius: 14px;
+      border: 2px solid var(--line);
+      font: 600 1.35rem/32px var(--hand);
+      background: linear-gradient(90deg, transparent 42px, #f08aa4 42px 44px, transparent 44px), repeating-linear-gradient(#fff 0 31px, #d6e3f7 31px 32px);
+      box-shadow: inset 0 3px 10px rgba(35, 48, 74, .07)
+    }
+
+    .answer:empty::before {
+      content: "Your answer goes here...";
+      color: #b3bcd3
+    }
+
+    .scene use {
+      filter: drop-shadow(0 3px 2px rgba(15, 20, 45, .28))
+    }
+
+    .scene.rp * {
+      animation: none !important
+    }
+
+    @keyframes drawonce {
+      from {
+        stroke-dashoffset: 420
+      }
+
+      to {
+        stroke-dashoffset: 0
+      }
+    }
+
+    /* ---- scene animation ---- */
+    .scene * {
+      transform-box: fill-box;
+      transform-origin: center
+    }
+
+    .scene:not(.on) * {
+      animation-play-state: paused
+    }
+
+    .t {
+      font: 600 11px var(--head);
+      fill: var(--ink)
+    }
+
+    .bob {
+      animation: bob 2.2s ease-in-out infinite;
+      transform-origin: center bottom
+    }
+
+    .hop {
+      animation: hop .9s ease-in-out infinite;
+      transform-origin: center bottom
+    }
+
+    .shake {
+      animation: shake .25s linear infinite
+    }
+
+    .no-shake {
+      animation: nope 1.4s ease-in-out infinite;
+      transform-origin: center bottom
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite
+    }
+
+    .pulse {
+      animation: pulse 1.6s ease-in-out infinite
+    }
+
+    .pop {
+      animation: pop 3s ease-in-out infinite
+    }
+
+    .pop2 {
+      animation: pop 3s ease-in-out 1.5s infinite
+    }
+
+    .spin {
+      animation: spin 6s linear infinite
+    }
+
+    .drip {
+      animation: drip 2s ease-in infinite
+    }
+
+    .twinkle {
+      animation: twinkle 1.5s ease-in-out infinite
+    }
+
+    .peek {
+      animation: peek 2.4s ease-in-out infinite
+    }
+
+    .tilt {
+      animation: tilt 3s ease-in-out infinite
+    }
+
+    .rise {
+      animation: rise 4s linear infinite
+    }
+
+    .fall {
+      animation: fall 5s linear infinite
+    }
+
+    .shard {
+      animation: shard 5s ease-out infinite
+    }
+
+    .draw {
+      stroke-dasharray: 140;
+      animation: draw 4s ease-in-out infinite
+    }
+
+    .coin {
+      animation: hop 1.2s ease-in-out infinite
+    }
+
+    @keyframes bob {
+      50% {
+        transform: translateY(-4px)
+      }
+    }
+
+    @keyframes hop {
+      50% {
+        transform: translateY(-9px)
+      }
+    }
+
+    @keyframes shake {
+      25% {
+        transform: translateX(-1.5px)
+      }
+
+      75% {
+        transform: translateX(1.5px)
+      }
+    }
+
+    @keyframes nope {
+      25% {
+        transform: rotate(-5deg)
+      }
+
+      75% {
+        transform: rotate(5deg)
+      }
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-8px)
+      }
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.18);
+        opacity: .7
+      }
+    }
+
+    @keyframes pop {
+
+      0%,
+      10% {
+        transform: scale(0)
+      }
+
+      20%,
+      70% {
+        transform: scale(1)
+      }
+
+      85%,
+      100% {
+        transform: scale(0)
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes drip {
+      0% {
+        transform: translateY(0);
+        opacity: 1
+      }
+
+      80%,
+      100% {
+        transform: translateY(34px);
+        opacity: 0
+      }
+    }
+
+    @keyframes twinkle {
+      50% {
+        opacity: .2;
+        transform: scale(.6)
+      }
+    }
+
+    @keyframes peek {
+
+      0%,
+      100% {
+        transform: translateY(8px) rotate(-6deg)
+      }
+
+      50% {
+        transform: translateY(-3px) rotate(4deg)
+      }
+    }
+
+    @keyframes tilt {
+
+      0%,
+      100% {
+        transform: rotate(-9deg)
+      }
+
+      50% {
+        transform: rotate(9deg)
+      }
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(40px);
+        opacity: 0
+      }
+
+      15%,
+      80% {
+        opacity: 1
+      }
+
+      100% {
+        transform: translateY(-70px);
+        opacity: 0
+      }
+    }
+
+    @keyframes draw {
+      0% {
+        stroke-dashoffset: 140
+      }
+
+      60%,
+      100% {
+        stroke-dashoffset: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important
+      }
+    }
+
+    /* ---- realistic finish ---- */
+    .card {
+      border: 1px solid rgba(35, 48, 74, .14);
+      border-radius: 24px;
+      box-shadow: 0 1px 2px rgba(20, 25, 50, .08), 0 14px 26px -10px rgba(20, 25, 50, .25), 0 38px 60px -26px var(--c)
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 2px 4px rgba(20, 25, 50, .08), 0 22px 34px -12px rgba(20, 25, 50, .3), 0 48px 70px -26px var(--c)
+    }
+
+    .card::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .25), transparent 40%)
+    }
+
+    .scene {
+      border-bottom: 0
+    }
+
+    .no {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--c), 0 6px 10px -2px var(--c)
+    }
+
+    .q-float span {
+      border-width: 2px;
+      box-shadow: 0 8px 14px -4px rgba(20, 25, 50, .3)
+    }
+
+    .answer {
+      background: linear-gradient(90deg, transparent 42px, #f08aa4 42px 44px, transparent 44px), repeating-linear-gradient(#fffefa 0 31px, #d6e3f7 31px 32px);
+      box-shadow: inset 0 3px 10px rgba(35, 48, 74, .08), 0 6px 16px -8px rgba(20, 25, 50, .2)
+    }
+
+    .card::before {
+      display: none
+    }
+
+    .scene {
+      background: #fff
+    }
+
+    /* scene 6: vase tips off the table, drops to the floor, shatters (5s loop) */
+    @keyframes fall {
+
+      0%,
+      24% {
+        transform: none;
+        opacity: 1
+      }
+
+      28% {
+        transform: rotate(-4deg)
+      }
+
+      32% {
+        transform: rotate(3deg)
+      }
+
+      44% {
+        transform: translate(8px, 0) rotate(38deg);
+        animation-timing-function: cubic-bezier(.55, 0, 1, .7)
+      }
+
+      66% {
+        transform: translate(36px, 52px) rotate(125deg);
+        opacity: 1
+      }
+
+      66.5%,
+      100% {
+        transform: translate(36px, 52px) rotate(125deg);
+        opacity: 0
+      }
+    }
+
+    @keyframes shard {
+
+      0%,
+      65.5% {
+        transform: scale(0);
+        opacity: 0
+      }
+
+      67% {
+        transform: scale(.5);
+        opacity: 1
+      }
+
+      73% {
+        transform: scale(1.08)
+      }
+
+      78%,
+      96% {
+        transform: scale(1);
+        opacity: 1
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 0
+      }
+    }
+
+    @keyframes frag {
+
+      0%,
+      65.5% {
+        transform: translate(0, 0);
+        opacity: 0
+      }
+
+      67% {
+        opacity: 1
+      }
+
+      74% {
+        transform: translate(calc(var(--dx)*.7), var(--dy))
+      }
+
+      84%,
+      96% {
+        transform: translate(var(--dx), 6px);
+        opacity: 1
+      }
+
+      100% {
+        transform: translate(var(--dx), 6px);
+        opacity: 0
+      }
+    }
+
+    @keyframes puff {
+
+      0%,
+      65.5% {
+        transform: scale(.3);
+        opacity: 0
+      }
+
+      67% {
+        transform: scale(.5);
+        opacity: .75
+      }
+
+      80%,
+      100% {
+        transform: scale(2.4);
+        opacity: 0
+      }
+    }
+
+    @keyframes ohno {
+
+      0%,
+      65% {
+        transform: scale(0)
+      }
+
+      69% {
+        transform: scale(1.1)
+      }
+
+      72%,
+      90% {
+        transform: scale(1)
+      }
+
+      96%,
+      100% {
+        transform: scale(0)
+      }
+    }
+
+    @keyframes flinch {
+
+      0%,
+      65% {
+        transform: none
+      }
+
+      68% {
+        transform: translateY(-10px)
+      }
+
+      72% {
+        transform: translateY(0)
+      }
+    }
+
+    .shard {
+      animation: shard 5s ease-out infinite
+    }
+
+    .frag {
+      animation: frag 5s ease-out infinite
+    }
+
+    .puff {
+      animation: puff 5s ease-out infinite
+    }
+
+    .ohno {
+      animation: ohno 5s ease-out infinite
+    }
+
+    .flinch {
+      animation: flinch 5s ease-out infinite;
+      transform-origin: center bottom
+    }
+
+    /* ---- activity 3 ---- */
+    .hero {
+      max-width: 1040px;
+      margin: 0 auto 54px;
+      --c: #ef7fa0
+    }
+
+    .hero .scene {
+      border-bottom: 0
+    }
+
+    h2.sec {
+      max-width: 1040px;
+      margin: 0 auto 20px;
+      font: 600 1.6rem/1.2 var(--head)
+    }
+
+    h2.sec small {
+      display: block;
+      margin-top: 6px;
+      font: 400 1rem/1.5 var(--body);
+      opacity: .8
+    }
+
+    .topics {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px
+    }
+
+    .topic {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: #fff;
+      border-radius: 22px;
+      padding: 16px 20px;
+      border: 1px solid rgba(35, 48, 74, .1);
+      box-shadow: 0 1px 2px rgba(20, 25, 50, .08), 0 14px 24px -12px rgba(20, 25, 50, .25)
+    }
+
+    .ico {
+      flex: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 19px;
+      background: var(--c);
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      box-shadow: 0 12px 18px -8px var(--c), inset 0 2px 0 rgba(255, 255, 255, .4)
+    }
+
+    .topic h3 {
+      font: 500 1.05rem/1.4 var(--head)
+    }
+
+    .final {
+      max-width: 1040px;
+      margin: 26px auto 0;
+      border-radius: 24px;
+      padding: 22px 28px;
+      color: #fff;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(120deg, #6b5bd2, #ef7fa0 70%, #f2b84b);
+      box-shadow: 0 24px 40px -18px #6b5bd2
+    }
+
+    .final b {
+      font: 600 1.2rem/1.4 var(--head)
+    }
+
+    .final span.ico {
+      background: rgba(255, 255, 255, .22);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, .35)
+    }
+
+    .letter-wrap {
+      max-width: 820px;
+      margin: 76px auto 0
+    }
+
+    .letter {
+      position: relative;
+      background: #fffdf7;
+      border-radius: 6px 6px 16px 16px;
+      padding: 64px 44px 42px;
+      transform: rotate(-.4deg);
+      box-shadow: 0 2px 3px rgba(20, 25, 50, .1), 0 26px 44px -16px rgba(20, 25, 50, .32), 0 70px 90px -50px #ef7fa0
+    }
+
+    .letter::before,
+    .letter::after {
+      content: "";
+      position: absolute;
+      top: -14px;
+      width: 112px;
+      height: 30px;
+      background: rgba(242, 184, 75, .6);
+      box-shadow: 0 2px 4px rgba(20, 25, 50, .12)
+    }
+
+    .letter::before {
+      left: 34px;
+      transform: rotate(-6deg)
+    }
+
+    .letter::after {
+      right: 34px;
+      transform: rotate(5deg)
+    }
+
+    .stamp {
+      position: absolute;
+      top: 22px;
+      right: 30px;
+      width: 74px;
+      height: 88px;
+      border: 2px dashed rgba(35, 48, 74, .35);
+      border-radius: 4px;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font: 600 .72rem/1.2 var(--head);
+      padding: 6px;
+      transform: rotate(3deg)
+    }
+
+    .stamp i {
+      font-style: normal;
+      font-size: 1.7rem;
+      display: block
+    }
+
+    .postmark {
+      position: absolute;
+      top: 30px;
+      right: 118px;
+      width: 80px;
+      height: 80px;
+      border: 3px double rgba(239, 127, 160, .75);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font: 600 .68rem/1.2 var(--head);
+      color: rgba(239, 127, 160, .95);
+      transform: rotate(-14deg)
+    }
+
+    .letter .answer {
+      margin: 0;
+      min-height: 560px;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0 8px 0 74px;
+      font: 600 1.45rem/36px var(--hand);
+      background: linear-gradient(90deg, transparent 56px, #f08aa4 56px 58px, transparent 58px), repeating-linear-gradient(transparent 0 35px, #d6e3f7 35px 36px)
+    }
+
+    @keyframes march {
+      to {
+        stroke-dashoffset: -22
+      }
+    }
+
+    @keyframes shoot {
+
+      0%,
+      68% {
+        opacity: 0;
+        transform: translate(0, 0)
+      }
+
+      72% {
+        opacity: 1
+      }
+
+      92%,
+      100% {
+        opacity: 0;
+        transform: translate(-80px, 36px)
+      }
+    }
+
+    .march {
+      animation: march 1.4s linear infinite
+    }
+
+    .shoot {
+      animation: shoot 6s ease-in infinite
+    }
+
+    @media(max-width:620px) {
+      .letter {
+        padding: 60px 18px 34px
+      }
+
+      .stamp,
+      .postmark {
+        transform: scale(.8)
+      }
+
+      .postmark {
+        right: 96px
+      }
+
+      .letter .answer {
+        padding-left: 62px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <svg width="1" height="1" style="position:absolute;overflow:hidden;pointer-events:none" aria-hidden="true">
+    <defs>
+      <linearGradient id="gShade" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".18" />
+        <stop offset=".35" stop-color="#000" stop-opacity="0" />
+        <stop offset=".65" stop-color="#fff" stop-opacity=".08" />
+        <stop offset="1" stop-color="#000" stop-opacity=".16" />
+      </linearGradient>
+      <radialGradient id="gFace" cx=".38" cy=".3" r=".8">
+        <stop offset="0" stop-color="#fff" stop-opacity=".35" />
+        <stop offset=".7" stop-color="#fff" stop-opacity="0" />
+        <stop offset="1" stop-color="#000" stop-opacity=".18" />
+      </radialGradient>
+      <radialGradient id="gSun" cx=".14" cy=".02" r=".9">
+        <stop offset="0" stop-color="#fff4d0" stop-opacity=".7" />
+        <stop offset=".5" stop-color="#fff4d0" stop-opacity=".16" />
+        <stop offset="1" stop-color="#fff4d0" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="gVig" cx=".5" cy=".45" r=".78">
+        <stop offset=".62" stop-color="#0f142d" stop-opacity="0" />
+        <stop offset="1" stop-color="#0f142d" stop-opacity=".2" />
+      </radialGradient>
+      <filter id="grain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch" />
+        <feColorMatrix type="saturate" values="0" />
+      </filter>
+    </defs>
+    <symbol id="p" viewBox="0 0 40 80">
+      <rect x="10" y="54" width="9" height="22" rx="3.5" fill="var(--pants,#34406a)" />
+      <rect x="21" y="54" width="9" height="22" rx="3.5" fill="var(--pants,#34406a)" />
+      <rect x="10" y="54" width="20" height="22" rx="3.5" fill="url(#gShade)" />
+      <ellipse cx="14.2" cy="77.4" rx="6.8" ry="2.9" fill="#2a2433" />
+      <ellipse cx="25.8" cy="77.4" rx="6.8" ry="2.9" fill="#2a2433" />
+      <rect x="1.5" y="27" width="7.5" height="24" rx="3.7" fill="var(--shirt)" />
+      <rect x="31" y="27" width="7.5" height="24" rx="3.7" fill="var(--shirt)" />
+      <circle cx="5.2" cy="52" r="3.5" fill="var(--skin)" />
+      <circle cx="34.8" cy="52" r="3.5" fill="var(--skin)" />
+      <rect x="16.5" y="21" width="7" height="7" rx="2.5" fill="var(--skin)" />
+      <rect x="16.5" y="21" width="7" height="3.4" rx="1.5" fill="#000" opacity=".2" />
+      <rect x="6" y="24" width="28" height="36" rx="11" fill="var(--shirt)" />
+      <rect x="6" y="24" width="28" height="36" rx="11" fill="url(#gShade)" />
+      <path d="M14.5 24.5l5.5 7 5.5-7z" fill="#fff" opacity=".55" />
+      <path d="M12 40q4 3 2 10M28 38q-3 4-1 11" stroke="#000" stroke-opacity=".14" stroke-width="1.2" fill="none"
+        stroke-linecap="round" />
+      <circle cx="9.6" cy="14.6" r="2.3" fill="var(--skin)" />
+      <circle cx="30.4" cy="14.6" r="2.3" fill="var(--skin)" />
+      <ellipse cx="20" cy="13" rx="10" ry="11" fill="var(--skin)" />
+      <ellipse cx="20" cy="13" rx="10" ry="11" fill="url(#gFace)" />
+      <path
+        d="M9.4 13.5C8.4 4 14.5-.5 20.2-.5s11.8 4.5 10.4 14C29 9.5 26.500 6.800 20.200 6.800S11.600 9.500 9.400 13.500z"
+        fill="var(--hair)" />
+      <path d="M13.500 2.500q6.500-2.600 12.500.2" stroke="#fff" stroke-opacity=".3" stroke-width="1.300" fill="none"
+        stroke-linecap="round" />
+      <path d="M13.200 10.300q2.600-1.700 5.200 0M21.600 10.300q2.600-1.700 5.200 0" stroke="var(--hair)"
+        stroke-width="1.200" fill="none" stroke-linecap="round" />
+      <ellipse cx="16" cy="13.600" rx="2.200" ry="1.700" fill="#fff" />
+      <ellipse cx="24" cy="13.600" rx="2.200" ry="1.700" fill="#fff" />
+      <circle cx="16.200" cy="13.700" r="1.250" fill="#3a2b22" />
+      <circle cx="24.200" cy="13.700" r="1.250" fill="#3a2b22" />
+      <circle cx="16.200" cy="13.700" r=".55" fill="#000" />
+      <circle cx="24.200" cy="13.700" r=".55" fill="#000" />
+      <circle cx="16.700" cy="13.100" r=".4" fill="#fff" />
+      <circle cx="24.700" cy="13.100" r=".4" fill="#fff" />
+      <path d="M20 14.500q-1.100 2.800.3 3.500" stroke="#000" stroke-opacity=".28" stroke-width=".9" fill="none"
+        stroke-linecap="round" />
+      <path d="M16.800 20.200q3.200 2.600 6.400 0" stroke="#8a3f48" stroke-width="1.300" fill="none"
+        stroke-linecap="round" />
+      <circle cx="13.200" cy="17.800" r="2.300" fill="#ff6f8f" opacity=".22" />
+      <circle cx="26.800" cy="17.800" r="2.300" fill="#ff6f8f" opacity=".22" />
+    </symbol>
+  </svg>
+
+  <header>
+    <div class="q-float" aria-hidden="true"><span>&#9993;</span><span>&#9733;</span><span>&#9829;</span></div>
+    <span class="pill">Activity 3</span>
+    <h1>A Letter to My Future Self</h1>
+    <svg class="squig" viewBox="0 0 300 16" aria-hidden="true">
+      <path d="M2 9q18-12 36 0t36 0t36 0t36 0t36 0t36 0t36 0t36 0" fill="none" stroke="#ef7fa0" stroke-width="5"
+        stroke-linecap="round" />
+    </svg>
+  </header>
+
+  <section class="card hero">
+    <svg class="scene" viewBox="0 0 640 260" role="img"
+      aria-label="A letter travels through the sky from a 20 year old graduate to their Grade 10 self studying at a desk at night">
+      <defs>
+        <linearGradient id="hsky" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#1f2754" />
+          <stop offset=".45" stop-color="#6b5bd2" />
+          <stop offset=".75" stop-color="#f4a3a3" />
+          <stop offset="1" stop-color="#ffd9a0" />
+        </linearGradient>
+        <linearGradient id="hfl" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stop-color="#2a2750" />
+          <stop offset="1" stop-color="#c58c60" />
+        </linearGradient>
+        <radialGradient id="hsun">
+          <stop offset="0" stop-color="#fff4c2" />
+          <stop offset=".35" stop-color="#ffd27a" stop-opacity=".6" />
+          <stop offset="1" stop-color="#ffd27a" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="hg" cx=".9" cy=".25" r=".6">
+          <stop offset="0" stop-color="#ffe7a8" stop-opacity=".4" />
+          <stop offset="1" stop-color="#ffe7a8" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="hv" cx=".5" cy=".45" r=".78">
+          <stop offset=".62" stop-color="#0f142d" stop-opacity="0" />
+          <stop offset="1" stop-color="#0f142d" stop-opacity=".22" />
+        </radialGradient>
+        <linearGradient id="hcone" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#ffe9a8" stop-opacity=".55" />
+          <stop offset="1" stop-color="#ffe9a8" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+      <rect width="640" height="260" fill="url(#hsky)" />
+      <g id="stars"></g>
+      <path class="shoot" d="M250 28l-26 11" stroke="#fff" stroke-width="2.5" stroke-linecap="round" />
+      <path d="M72 30A22 22 0 1 0 72 74A17 17 0 1 1 72 30Z" fill="#fdf1c4" />
+      <circle class="pulse" cx="585" cy="74" r="78" fill="url(#hsun)" />
+      <circle cx="585" cy="74" r="20" fill="#fff2b8" />
+      <path d="M250 214v-44h22v-18h26v30h18v-52h24v40h20v-24h28v68z" fill="#4b3f86" opacity=".42" />
+      <rect width="640" height="260" fill="url(#hg)" />
+      <rect y="212" width="640" height="48" fill="url(#hfl)" />
+      <rect y="212" width="640" height="2" fill="#fff" opacity=".25" />
+
+      <path d="M106 172L88 120 82 120" fill="none" />
+      <polygon class="pulse" points="104,124 70,172 150,172" fill="url(#hcone)" />
+      <g class="bob">
+        <use href="#p" x="100" y="112" width="50" height="100"
+          style="--shirt:#eef1ff;--pants:#3a4a7a;--skin:#e8b88a;--hair:#2b2220" />
+      </g>
+      <rect x="58" y="170" width="136" height="9" rx="3" fill="#8a6a4a" />
+      <rect x="66" y="179" width="7" height="33" fill="#6e533a" />
+      <rect x="178" y="179" width="7" height="33" fill="#6e533a" />
+      <rect x="160" y="154" width="30" height="8" rx="2" fill="#6b5bd2" />
+      <rect x="163" y="146" width="24" height="8" rx="2" fill="#ef7fa0" />
+      <rect x="108" y="164" width="34" height="6" rx="1.500" fill="#fff" />
+      <path d="M72 170l16-46 26-8" fill="none" stroke="#23304a" stroke-width="3" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <path d="M108 112l14 8-6 10-14-8z" fill="#f2b84b" stroke="#23304a" stroke-width="2" stroke-linejoin="round" />
+
+      <g class="bob" style="animation-delay:.7s">
+        <use href="#p" x="500" y="104" width="54" height="108"
+          style="--shirt:#3aa6a0;--pants:#2c3358;--skin:#c98f66;--hair:#1f1b24" />
+        <path d="M514 107q13 6 26 0v-9q-13 4-26 0z" fill="#1c2540" />
+        <path d="M503 104l24-10 24 10-24 10z" fill="#23304a" />
+        <path d="M527 104l22 0" stroke="#f2b84b" stroke-width="2" />
+        <path d="M549 104q4 10 3 20" fill="none" stroke="#f2b84b" stroke-width="2.200" stroke-linecap="round" />
+        <circle cx="552" cy="126" r="2.800" fill="#f2b84b" />
+      </g>
+      <rect x="452" y="172" width="152" height="9" rx="3" fill="#8a6a4a" />
+      <rect x="462" y="181" width="7" height="31" fill="#6e533a" />
+      <rect x="586" y="181" width="7" height="31" fill="#6e533a" />
+      <rect x="566" y="168" width="34" height="4" rx="1.500" fill="#cfd6e6" />
+      <rect x="568" y="140" width="30" height="28" rx="3" fill="#2a3358" />
+      <rect x="571" y="143" width="24" height="22" rx="2" fill="#bfe3ff" />
+      <rect class="pulse" x="571" y="143" width="24" height="22" rx="2" fill="#fff" opacity=".35" />
+
+      <path id="route" class="march" d="M530 96C440 0 230 0 140 96" fill="none" stroke="#fff" stroke-opacity=".6"
+        stroke-width="2.200" stroke-dasharray="2 9" stroke-linecap="round" />
+      <g>
+        <animateMotion dur="7s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines=".45 0 .25 1">
+          <mpath href="#route" />
+        </animateMotion>
+        <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.08;.9;1" dur="7s" repeatCount="indefinite" />
+        <rect x="-17" y="-12" width="34" height="24" rx="3" fill="#fff" stroke="#23304a" stroke-width="2" />
+        <path d="M-17-10l17 12 17-12" fill="none" stroke="#23304a" stroke-width="2" stroke-linejoin="round" />
+        <circle cy="3" r="4.500" fill="#ef7fa0" />
+      </g>
+
+      <g class="pop">
+        <rect x="82" y="66" width="86" height="26" rx="13" fill="#fff" stroke="#23304a" stroke-width="2" /><text
+          class="t" x="125" y="83" text-anchor="middle">Grade 10 me</text>
+      </g>
+      <g class="pop2">
+        <rect x="490" y="60" width="74" height="26" rx="13" fill="#fff" stroke="#23304a" stroke-width="2" /><text
+          class="t" x="527" y="77" text-anchor="middle">Me at 21</text>
+      </g>
+      <rect width="640" height="260" fill="url(#hv)" pointer-events="none" />
+    </svg>
+  </section>
+
+  <h2 class="sec">Your letter<small>For my younger self.</small></h2>
+  <div class="letter-wrap" id="wrap">
+    <article class="letter">
+      <div class="postmark">Sent from<br>age 21</div>
+      <div class="stamp"><span><i>&#9993;&#65039;</i>Grade 10</span></div>
+
+      <p class="answer">
+        Dear 16-year-old me,
+
+        <br><br>
+        Hey, how are you? I hope you're doing well. It's me, your 20-year-old self. I know you have plenty of questions
+        about what the future holds, and I wish I could tell you everything that will happen. However, what I can tell
+        you is that the journey ahead will teach you more than you could ever imagine.
+
+        <br><br>
+        Looking back, I can proudly say that I have become someone who is more <strong>mature, independent, disciplined,
+          and understanding.</strong> I have learned to appreciate the little things in life and understand that
+        personal growth takes time. I am no longer the person who constantly worries about what others think. Instead, I
+        have learned to focus on my own progress and take responsibility for my decisions.
+
+        <br><br>
+        Do you remember the dreams you used to have? Becoming a <strong>successful software engineer, studying at the
+          University of Santo Tomas, and building a better future for yourself?</strong> I hope you realize how
+        meaningful those dreams were. I have worked hard to turn those ambitions into reality, and I am proud of how far
+        I have come. My curiosity about mathematics, science, and programming has continued to guide me toward the
+        career I wanted.
+
+        <br><br>
+        The journey wasn't always easy. I experienced failures, disappointments, and moments when I questioned my own
+        abilities. I also encountered situations that tested my patience and challenged my beliefs. Nevertheless, I
+        managed to overcome those difficulties by staying persistent and trusting God's plans. I made mistakes along the
+        way, too. Some decisions taught me that not everything deserves my attention, and that sometimes, letting go is
+        part of growing up. I learned that <strong>I cannot control everything, but I can always control how I
+          respond.</strong>
+
+        <br><br>
+        I am also grateful for the people who helped me reach this point. My family, friends, and teachers have
+        contributed to my growth in ways I will never forget. Above all, I am thankful to God for giving me strength and
+        guidance throughout my journey.
+
+        <br><br>
+        If I could give you some advice, I would tell you to <strong>never underestimate your potential.</strong>
+        Continue learning, stay humble, and remain consistent with your goals. Don't let temporary failures define your
+        capabilities, and never sacrifice your values just to gain recognition or approval from others.
+
+        <br><br>
+        Lastly, remember this: <strong>I wish I had understood earlier that life is not a race against other people. I
+          don't need to become successful before everyone else; I just need to become a better version of myself every
+          single day.</strong>
+
+        <br><br>
+        With love and gratitude,
+
+        <br>
+        <strong>Your 21-year-old self</strong>
+      </p>
+
+    </article>
+  </div>
+
+  <script>
+    (function () {
+      var NS = 'http://www.w3.org/2000/svg', svg = document.querySelector('.scene');
+      // stars in the night half of the sky
+      var g = document.getElementById('stars');
+      for (var i = 0; i < 26; i++) {
+        var r = function (m) { return Math.abs(Math.sin(i * 12.9 + m)); };
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', 10 + r(78.2) * 330); c.setAttribute('cy', 8 + r(37.7) * 120);
+        c.setAttribute('r', 0.8 + r(11.3) * 1.5); c.setAttribute('fill', '#fff');
+        c.setAttribute('class', 'twinkle');
+        c.style.animationDelay = (r(5.1) * 2).toFixed(2) + 's';
+        g.appendChild(c);
+      }
+      // only animate while the scene is on screen
+      var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function play(on) { svg.classList.toggle('on', on); if (svg.pauseAnimations) { (on && !still) ? svg.unpauseAnimations() : svg.pauseAnimations(); } }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (e) { play(e[0].isIntersecting); }, { threshold: 0.25 }).observe(svg);
+      } else { play(true); }
+    })();
+  </script>
+</body>
+
+</html>
